@@ -91,11 +91,6 @@ class SignupForm extends Component {
                 </div>
               </form>
             </div>
-            <div className="signup-image">
-              <figure>
-                <img src="../../images/featured-mix.jpg" alt="" />
-              </figure>
-            </div>
           </div>
         </div>
       </section>

@@ -12,7 +12,7 @@ const menu = [
     to: '/about'
   },
   {
-    children: 'The Archive',
+    children: 'Archive',
     className: linkClass,
     to: '/archive'
   },
@@ -22,14 +22,19 @@ const menu = [
     to: '/mixes'
   },
   {
-    children: 'The Culture',
+    children: 'Culture',
     className: linkClass,
     to: '/culture'
   },
   {
-    children: 'The Blog',
+    children: 'Blog',
     className: linkClass,
     to: '/blog'
+  },
+  {
+    children: 'Sign Up',
+    className: linkClass,
+    to: '/signup'
   }
 ]
 

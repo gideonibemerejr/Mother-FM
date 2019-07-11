@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom'
 import Header from './components/Header'
 import HomePage from './pages/Home'
 import AboutPage from './pages/About'
@@ -16,27 +21,34 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="flex-l justify-end">
-          {/* Featured Mix Component */}
-          <FeaturedMix />
-          <div className="w-50-l relative z-1">
-            <Header />
-            {/* Routed Pages */}
-            {/* Pass state and any actions */}
-            {/* // TODO: Create Protected Routes */}
-            <Route exact path="/" render={() => <HomePage />} />
-            <Route path="/about" render={() => <AboutPage />} />
-            <Route path="/archive" render={() => <ArchivePage />} />
-            <Route path="/mixes" render={() => <MixesPage />} />
-            <Route path="/culture" render={() => <CulturePage />} />
-            <Route path="/blog" render={() => <BlogPage />} />
-            <Router
-              exact
-              path="/signup"
-              render={({ history }) => <SignupPage />}
-            />
+        <Switch>
+          <div className="flex-l justify-end">
+            {/* Featured Mix Component */}
+            <FeaturedMix />
+            <div className="w-50-l relative z-1">
+              <Header />
+              {/* Routed Pages */}
+              {/* Pass state and any actions */}
+              {/* // TODO: Create Protected Routes */}
+              <Route exact path="/" render={() => <HomePage />} />
+              <Route exact path="/about" render={() => <AboutPage />} />
+              <Route path="/archive" render={() => <ArchivePage />} />
+              <Route path="/mixes" render={() => <MixesPage />} />
+              <Route path="/culture" render={() => <CulturePage />} />
+              <Route path="/blog" render={() => <BlogPage />} />
+              <Route
+                exact
+                path="/signup"
+                render={({ history }) => (
+                  <SignupPage
+                    history={history}
+                    handleSignupOrLogin={this.handleSignupOrLogin}
+                  />
+                )}
+              />
+            </div>
           </div>
-        </div>
+        </Switch>
         {/* Audio Player */}
         <iframe
           width="100%"
