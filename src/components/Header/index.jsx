@@ -1,6 +1,7 @@
 import React from 'react'
 import menu from '../../data/menu'
 import NavItem from '../NavItem'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import SignupForm from '../../components/SignupForm'
-import './SignupPage.css'
 
 class SignupPage extends Component {
   constructor(props) {
@@ -12,8 +11,7 @@ class SignupPage extends Component {
   }
   render() {
     return (
-      <main className="SignupPage">
-        <h1>Here</h1>
+      <main className="vh-100 align-items-center">
         <SignupForm {...this.props} updateMessage={this.updateMessage} />
         <p>{this.state.message}</p>
       </main>

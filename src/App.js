@@ -5,14 +5,14 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom'
-import Header from './components/Header'
-import HomePage from './pages/Home'
 import AboutPage from './pages/About'
 import ArchivePage from './pages/Archive'
 import MixesPage from './pages/Mixes'
 import CulturePage from './pages/Culture'
 import BlogPage from './pages/Blog'
 import SignupPage from './pages/SignupPage'
+import Home from './pages/Home'
+import Header from './components/Header'
 import FeaturedMix from './components/FeaturedMix'
 import 'tachyons'
 
@@ -27,15 +27,17 @@ class App extends Component {
             <FeaturedMix />
             <div className="w-50-l relative z-1">
               <Header />
+
               {/* Routed Pages */}
               {/* Pass state and any actions */}
               {/* // TODO: Create Protected Routes */}
-              <Route exact path="/" render={() => <HomePage />} />
+              <Route exact path="/" render={() => <Home />} />
               <Route exact path="/about" render={() => <AboutPage />} />
               <Route path="/archive" render={() => <ArchivePage />} />
               <Route path="/mixes" render={() => <MixesPage />} />
               <Route path="/culture" render={() => <CulturePage />} />
               <Route path="/blog" render={() => <BlogPage />} />
+
               <Route
                 exact
                 path="/signup"
@@ -49,6 +51,7 @@ class App extends Component {
             </div>
           </div>
         </Switch>
+
         {/* Audio Player */}
         <iframe
           width="100%"

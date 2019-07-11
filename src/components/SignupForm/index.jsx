@@ -86,8 +86,9 @@ class SignupForm extends Component {
                     type="submit"
                     name="signup"
                   >
-                    Register
+                    Sign Up
                   </button>
+                  <Link to='/'>Cancel</Link>
                 </div>
               </form>
             </div>
