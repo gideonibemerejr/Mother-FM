@@ -91,3 +91,26 @@ body {
   height: 100%;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
 }
+
+.main {
+  background: #f8f8f8;
+  padding: 150px 0;
+}
+
+.signup {
+  margin-bottom: 150px;
+}
+
+.container {
+}
+
+/*--------------------*/
+/*  * Media Queries
+/*-------------------*/
+
+@media screen and (max-width: 1200px) {
+  .container {
+    width: calc(100% - 30px);
+    max-width: 100%;
+  }
+}

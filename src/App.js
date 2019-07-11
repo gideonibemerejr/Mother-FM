@@ -7,6 +7,7 @@ import ArchivePage from './pages/Archive'
 import MixesPage from './pages/Mixes'
 import CulturePage from './pages/Culture'
 import BlogPage from './pages/Blog'
+import SignupPage from './pages/SignupPage'
 import FeaturedMix from './components/FeaturedMix'
 import 'tachyons'
 
@@ -29,6 +30,11 @@ class App extends Component {
             <Route path="/mixes" render={() => <MixesPage />} />
             <Route path="/culture" render={() => <CulturePage />} />
             <Route path="/blog" render={() => <BlogPage />} />
+            <Router
+              exact
+              path="/signup"
+              render={({ history }) => <SignupPage />}
+            />
           </div>
         </div>
         {/* Audio Player */}
