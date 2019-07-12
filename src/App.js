@@ -1,3 +1,5 @@
+/*global Mixcloud*/
+
 import React, { Component } from 'react'
 import {
   BrowserRouter as Router,
@@ -11,17 +13,25 @@ import CulturePage from './pages/Culture'
 import BlogPage from './pages/Blog'
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
+import CreateMixPage from './pages/CreateMixPage'
 import Home from './pages/Home'
 import Header from './components/Header'
 import FeaturedMix from './components/FeaturedMix'
 import userUtil from './utils/userUtil'
+import mixesUtil from './utils/mixesUtil'
 import 'tachyons'
 
 class App extends Component {
   state = {
     mixes: [],
-    user: userUtil.getUser()
+    user: userUtil.getUser(),
+    isPosting: false
   }
+
+  /*************************************************
+  // * General Purpose Methods  
+  *************************************************/
+
   handleLogout = () => {
     userUtil.logout()
     this.setState({ user: null })
@@ -30,10 +40,65 @@ class App extends Component {
     this.setState({ user: userUtil.getUser() })
   }
 
+  // general purpose for handline Mixcloud Widget
+  handleMountAudio = async () => {
+    // when we use the this keyword, our widget is
+    // now accessible anywhere inside the component
+    this.widget = Mixcloud.PlayerWidget(this.player)
+    // here we wait for our widget to be ready before continuing
+    await this.widget.ready
+  }
+
+  handleAddMix = ({ link }) => {
+    this.setState(
+      state => ({ isPosting: !this.state.isPosting }),
+      async function() {
+        console.log(link)
+
+        await mixesUtil.create(link).then(result =>
+          this.setState({
+            mixes: [{ result }, ...this.state.mixes]
+          })
+        )
+      }
+    )
+  }
+
+  /*************************************************
+  // * Lifecycle Methods 
+  *************************************************/
+  componentDidMount() {
+    this.handleMountAudio()
+  }
+
   render() {
     return (
       <Router>
         <Switch>
+          <Route
+            exact
+            path="/make-mixes"
+            render={() => <CreateMixPage handleAddMix={this.handleAddMix} />}
+          />
+          <Route
+            path="/login"
+            render={({ history }) => (
+              <LoginPage
+                history={history}
+                handleSignupOrLogin={this.handleSignupOrLogin}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/signup"
+            render={({ history }) => (
+              <SignupPage
+                history={history}
+                handleSignupOrLogin={this.handleSignupOrLogin}
+              />
+            )}
+          />
           <div className="flex-l justify-end">
             {/* Featured Mix Component */}
             <FeaturedMix />
@@ -57,25 +122,6 @@ class App extends Component {
               />
               <Route path="/culture" render={() => <CulturePage />} />
               <Route path="/blog" render={() => <BlogPage />} />
-              <Route
-                path="/login"
-                render={({ history }) => (
-                  <LoginPage
-                    history={history}
-                    handleSignupOrLogin={this.handleSignupOrLogin}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/signup"
-                render={({ history }) => (
-                  <SignupPage
-                    history={history}
-                    handleSignupOrLogin={this.handleSignupOrLogin}
-                  />
-                )}
-              />
             </div>
           </div>
         </Switch>
@@ -88,6 +134,7 @@ class App extends Component {
           frameBorder="0"
           title="Audio Player"
           className="db fixed bottom-0 z-5"
+          ref={player => (this.player = player)}
         />
       </Router>
     )

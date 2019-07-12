@@ -43,6 +43,14 @@ const Header = props => {
           Log In
         </NavLink>
       </li>
+      <li className="mh2">
+        <NavLink
+          className="nav-link link biryani-black f6 ttu gray"
+          to="make-mixes"
+        >
+          Create a Mix
+        </NavLink>
+      </li>
     </ul>
   )
   return (

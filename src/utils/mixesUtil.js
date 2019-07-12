@@ -24,14 +24,14 @@ function getFirstSix() {
   return fetch(BASE_URL, options).then(res => res.json())
 }
 
-function create(mix) {
+function create(link) {
   const options = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + tokenUtil.getToken()
     },
-    body: JSON.stringify(mix)
+    body: JSON.stringify(link)
   }
   return fetch(BASE_URL, options).then(res => res.json())
 }
