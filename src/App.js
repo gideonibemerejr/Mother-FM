@@ -1,36 +1,85 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Header from './components/Header'
-import HomePage from './pages/Home'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom'
 import AboutPage from './pages/About'
 import ArchivePage from './pages/Archive'
-import MixesPage from './pages/Mixes'
 import CulturePage from './pages/Culture'
 import BlogPage from './pages/Blog'
+import SignupPage from './pages/SignupPage'
+import LoginPage from './pages/LoginPage'
+import Home from './pages/Home'
+import Header from './components/Header'
 import FeaturedMix from './components/FeaturedMix'
+import userUtil from './utils/userUtil'
 import 'tachyons'
 
 class App extends Component {
-  state = {}
+  state = {
+    mixes: [],
+    user: userUtil.getUser()
+  }
+  handleLogout = () => {
+    userUtil.logout()
+    this.setState({ user: null })
+  }
+  handleSignupOrLogin = () => {
+    this.setState({ user: userUtil.getUser() })
+  }
+
   render() {
     return (
       <Router>
-        <div className="flex-l justify-end">
-          {/* Featured Mix Component */}
-          <FeaturedMix />
-          <div className="w-50-l relative z-1">
-            <Header />
-            {/* Routed Pages */}
-            {/* Pass state and any actions */}
-            {/* // TODO: Create Protected Routes */}
-            <Route exact path="/" render={() => <HomePage />} />
-            <Route path="/about" render={() => <AboutPage />} />
-            <Route path="/archive" render={() => <ArchivePage />} />
-            <Route path="/mixes" render={() => <MixesPage />} />
-            <Route path="/culture" render={() => <CulturePage />} />
-            <Route path="/blog" render={() => <BlogPage />} />
+        <Switch>
+          <div className="flex-l justify-end">
+            {/* Featured Mix Component */}
+            <FeaturedMix />
+            <div className="w-50-l relative z-1">
+              <Header user={this.state.user} handleLogout={this.handleLogout} />
+              {/* Routed Pages */}
+              {/* Pass state and any actions */}
+              {/* // TODO: Create Protected Routes */}
+              <Route exact path="/" render={() => <Home />} />
+              <Route exact path="/about" render={() => <AboutPage />} />
+
+              <Route
+                path="/archive"
+                render={() =>
+                  userUtil.getUser() ? (
+                    <ArchivePage />
+                  ) : (
+                    <Redirect to="/login" />
+                  )
+                }
+              />
+              <Route path="/culture" render={() => <CulturePage />} />
+              <Route path="/blog" render={() => <BlogPage />} />
+              <Route
+                path="/login"
+                render={({ history }) => (
+                  <LoginPage
+                    history={history}
+                    handleSignupOrLogin={this.handleSignupOrLogin}
+                  />
+                )}
+              />
+              <Route
+                exact
+                path="/signup"
+                render={({ history }) => (
+                  <SignupPage
+                    history={history}
+                    handleSignupOrLogin={this.handleSignupOrLogin}
+                  />
+                )}
+              />
+            </div>
           </div>
-        </div>
+        </Switch>
+
         {/* Audio Player */}
         <iframe
           width="100%"
