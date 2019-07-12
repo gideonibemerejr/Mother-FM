@@ -33,7 +33,7 @@ class App extends Component {
             {/* Featured Mix Component */}
             <FeaturedMix />
             <div className="w-50-l relative z-1">
-              <Header user={this.state.user} handleLogOut={this.handleLogOut} />
+              <Header user={this.state.user} handleLogout={this.handleLogout} />
 
               {/* Routed Pages */}
               {/* Pass state and any actions */}

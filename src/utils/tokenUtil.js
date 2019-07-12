@@ -27,6 +27,7 @@ function getUserFromToken() {
 
 function removeToken() {
   localStorage.removeItem('token')
+  console.log('line 30', 'token moving')
 }
 
 export default {

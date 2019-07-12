@@ -22,7 +22,7 @@ class SignupForm extends Component {
     try {
       await userUtil.signup(this.state)
       // Successful sign up? Show HomePage
-      // this.props.handleSignupOrLogin()
+      this.props.handleSignupOrLogin()
       this.props.history.push('/')
     } catch (error) {
       this.props.updateMessage(error.message)

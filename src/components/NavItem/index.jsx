@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const NavItem = ({ className, to, children, handleLogout }) => {
+const NavItem = ({ className, to, children }) => {
   return (
     <li className="mh2">
-      <NavLink onClick={handleLogout} exact to={to} className={className}>
+      <NavLink exact to={to} className={className}>
         {children}
       </NavLink>
     </li>

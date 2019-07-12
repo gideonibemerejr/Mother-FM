@@ -17,6 +17,11 @@ const menu = [
     to: '/archive'
   },
   {
+    children: 'Sign Up',
+    className: linkClass,
+    to: '/signup'
+  },
+  {
     children: 'Culture',
     className: linkClass,
     to: '/culture'
@@ -25,11 +30,6 @@ const menu = [
     children: 'Blog',
     className: linkClass,
     to: '/blog'
-  },
-  {
-    children: 'Sign Up',
-    className: linkClass,
-    to: '/signup'
   }
 ]
 

@@ -4,7 +4,7 @@ import NavItem from '../NavItem'
 import { Link } from 'react-router-dom'
 
 const Header = props => {
-  const size = 3
+  const size = 4
   const NavItems = menu.slice(0, size)
 
   let nav = props.user ? (
@@ -12,12 +12,15 @@ const Header = props => {
       {menu.map((item, idx) => (
         <NavItem key={idx} {...item} />
       ))}
-      <NavItem
-        children="Log Out"
-        to=""
-        className="nav-link link biryani-black f6 ttu gray"
-        handleLogout={props.handleLogout}
-      />
+      <li className="mh2">
+        <Link
+          className="nav-link link biryani-black f6 ttu gray"
+          to=""
+          onClick={props.handleLogout}
+        >
+          Log Out
+        </Link>
+      </li>
     </ul>
   ) : (
     <ul className="list flex justify-center pl0">
