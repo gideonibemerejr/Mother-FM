@@ -1,10 +1,10 @@
 import React from 'react'
 import menu from '../../data/menu'
 import NavItem from '../NavItem'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 const Header = props => {
-  const size = 4
+  const size = 3
   const NavItems = menu.slice(0, size)
 
   let nav = props.user ? (
@@ -27,6 +27,22 @@ const Header = props => {
       {NavItems.map((item, idx) => (
         <NavItem key={idx} {...item} />
       ))}
+      <li className="mh2">
+        <NavLink
+          className="nav-link link biryani-black f6 ttu gray"
+          to="/signup"
+        >
+          Sign Up
+        </NavLink>
+      </li>
+      <li className="mh2">
+        <NavLink
+          className="nav-link link biryani-black f6 ttu gray"
+          to="/login"
+        >
+          Log In
+        </NavLink>
+      </li>
     </ul>
   )
   return (

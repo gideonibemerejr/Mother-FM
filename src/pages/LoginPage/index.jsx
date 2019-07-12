@@ -10,12 +10,22 @@ class LoginPage extends Component {
 
   handleChange = e => {
     // TODO: HANDLE CHANGE FOR CONTROLLED FORM
-    // this.setState({
-    //     [e.target.name]: e.target.value
-    // })
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+  handleSubmit = async e => {
+    e.preventDefault()
+    try {
+      await userUtil.login(this.state)
+      // Successful sign up? Show HomePage
+      this.props.handleSignupOrLogin()
+      this.props.history.push('/')
+    } catch (error) {
+      alert('Invalid Credentials!')
+    }
   }
 
-  handleSubmit = e => {}
   render() {
     return (
       <section className="signup">
