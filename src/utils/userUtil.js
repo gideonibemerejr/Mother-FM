@@ -1,6 +1,6 @@
 import tokenUtil from './tokenUtil'
 
-const BASE_URL = 'http://localhost:3001/api/users/'
+const BASE_URL = 'http://motherfmapi.herokuapp.com/api/users/'
 
 function signup(user) {
   return (
