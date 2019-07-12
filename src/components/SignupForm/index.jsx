@@ -22,7 +22,7 @@ class SignupForm extends Component {
     try {
       await userUtil.signup(this.state)
       // Successful sign up? Show HomePage
-      this.props.handleSignupOrLogin()
+      // this.props.handleSignupOrLogin()
       this.props.history.push('/')
     } catch (error) {
       this.props.updateMessage(error.message)
@@ -42,10 +42,16 @@ class SignupForm extends Component {
           <div className="signup-content">
             <div className="signup-form">
               <h2 className="form-title">Sign up</h2>
-              <form action="" className="register-form" id="register-form">
+              <form
+                onSubmit={this.handleSubmit}
+                className="register-form"
+                id="register-form"
+              >
                 <div className="form-group">
                   <label htmlFor="name">i</label>
                   <input
+                    onChange={this.handleChange}
+                    value={this.state.name}
                     type="text"
                     name="name"
                     id="name"
@@ -55,6 +61,8 @@ class SignupForm extends Component {
                 <div className="form-group">
                   <label htmlFor="email">i</label>
                   <input
+                    onChange={this.handleChange}
+                    value={this.state.email}
                     type="email"
                     name="email"
                     id="email"
@@ -64,6 +72,8 @@ class SignupForm extends Component {
                 <div className="form-group">
                   <label htmlFor="password">i</label>
                   <input
+                    onChange={this.handleChange}
+                    value={this.state.password}
                     type="password"
                     name="password"
                     id="password"
@@ -73,6 +83,8 @@ class SignupForm extends Component {
                 <div className="form-group">
                   <label htmlFor="passwordConf">i</label>
                   <input
+                    onChange={this.handleChange}
+                    value={this.state.passwordConf}
                     name="passwordConf"
                     type="password"
                     id="passwordConf"
@@ -81,14 +93,12 @@ class SignupForm extends Component {
                 </div>
                 <div className="form-group form-button">
                   <button
-                    className="form-submit"
-                    id="signup"
-                    type="submit"
-                    name="signup"
+                    className="f6 link dim br2 ph3 pv2 mb2 dib white bg-black"
+                    disabled={this.isFormInvalid()}
                   >
                     Sign Up
                   </button>
-                  <Link to='/'>Cancel</Link>
+                  <Link to="/">Cancel</Link>
                 </div>
               </form>
             </div>

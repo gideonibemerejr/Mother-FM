@@ -11,7 +11,7 @@ class SignupPage extends Component {
   }
   render() {
     return (
-      <main className="vh-100 align-items-center">
+      <main className="vh-100 align-items-center justify content center">
         <SignupForm {...this.props} updateMessage={this.updateMessage} />
         <p>{this.state.message}</p>
       </main>

@@ -2,7 +2,7 @@ const linkClass = 'nav-link link biryani-black f6 ttu gray'
 
 const menu = [
   {
-    children: 'Home',
+    children: 'Latest',
     className: linkClass,
     to: '/'
   },
@@ -15,11 +15,6 @@ const menu = [
     children: 'Archive',
     className: linkClass,
     to: '/archive'
-  },
-  {
-    children: 'Mixes',
-    className: linkClass,
-    to: '/mixes'
   },
   {
     children: 'Culture',
