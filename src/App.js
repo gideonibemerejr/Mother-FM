@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom'
 import AboutPage from './pages/About'
 import ArchivePage from './pages/Archive'
 import CulturePage from './pages/Culture'
@@ -34,13 +39,22 @@ class App extends Component {
             <FeaturedMix />
             <div className="w-50-l relative z-1">
               <Header user={this.state.user} handleLogout={this.handleLogout} />
-
               {/* Routed Pages */}
               {/* Pass state and any actions */}
               {/* // TODO: Create Protected Routes */}
               <Route exact path="/" render={() => <Home />} />
               <Route exact path="/about" render={() => <AboutPage />} />
-              <Route path="/archive" render={() => <ArchivePage />} />
+
+              <Route
+                path="/archive"
+                render={() =>
+                  userUtil.getUser() ? (
+                    <ArchivePage />
+                  ) : (
+                    <Redirect to="/login" />
+                  )
+                }
+              />
               <Route path="/culture" render={() => <CulturePage />} />
               <Route path="/blog" render={() => <BlogPage />} />
               <Route
@@ -52,7 +66,6 @@ class App extends Component {
                   />
                 )}
               />
-
               <Route
                 exact
                 path="/signup"
