@@ -49,12 +49,19 @@ class App extends Component {
     this.widget = Mixcloud.PlayerWidget(this.player)
     // here the app waits for the widget to be ready before continuing
     await this.widget.ready
-
+    console.log(this.widget.events)
     // using the mixcloud widget events, the app can detect when the audio has been paused, set playing state to false
-    this.widget.events.pause.on(() => this.setState({ playing: false }))
-
+    this.widget.events.pause.on(this.handlePause)
     // audio is playing again, set playing state to true
-    this.widget.events.play.on(() => this.setState({ playing: true }))
+    this.widget.events.play.on(this.handlePlay)
+    console.log('play')
+  }
+  handlePause() {
+    this.setState({ playing: false })
+    console.log('working')
+  }
+  handlePlay() {
+    this.setState({ playing: true })
   }
 
   actions = {
@@ -80,8 +87,6 @@ class App extends Component {
     this.setState(
       state => ({ isAdding: !this.state.isPosting }),
       async function() {
-        console.log(link)
-
         await mixesUtil.createMix(link).then(result =>
           this.setState({
             mixes: [{ result }, ...this.state.mixes]
@@ -104,9 +109,7 @@ class App extends Component {
   }
 
   handleUpdateMixes = singleMix => {
-    console.log('cool')
     this.setState((state, props) => ({ mixes: [...state.mixes, singleMix] }))
-    console.log(this.state)
   }
 
   /*************************************************
@@ -118,6 +121,7 @@ class App extends Component {
   }
 
   render() {
+    const [firstMix = {}] = this.state.mixes
     return (
       <Router>
         <Switch>
@@ -147,7 +151,12 @@ class App extends Component {
           />
           <div className="flex-l justify-end">
             {/* Featured Mix Component */}
-            <FeaturedMix />
+            <FeaturedMix
+              {...this.state}
+              {...this.actions}
+              {...firstMix}
+              id={firstMix.key}
+            />
             <div className="w-50-l relative z-1">
               <Header user={this.state.user} handleLogout={this.handleLogout} />
               {/* Routed Pages */}
@@ -156,7 +165,7 @@ class App extends Component {
               <Route
                 exact
                 path="/"
-                render={props => (
+                render={() => (
                   <Home
                     handleUpdateMixes={this.handleUpdateMixes}
                     {...this.state}
@@ -168,11 +177,12 @@ class App extends Component {
 
               <Route
                 path="/archive"
-                render={props =>
+                render={() =>
                   userUtil.getUser() ? (
                     <ArchivePage
                       handleUpdateMixes={this.handleUpdateMixes}
-                      togglePlay={this.togglePlay}
+                      {...this.state}
+                      {...this.actions}
                     />
                   ) : (
                     <Redirect to="/login" />
@@ -181,12 +191,12 @@ class App extends Component {
               />
               <Route
                 path="/culture"
-                togglePlay={this.togglePlay}
                 render={() =>
                   userUtil.getUser() ? (
                     <CulturePage
                       handleUpdateMixes={this.handleUpdateMixes}
-                      togglePlay={this.togglePlay}
+                      {...this.state}
+                      {...this.actions}
                     />
                   ) : (
                     <Redirect to="/login" />
@@ -195,12 +205,12 @@ class App extends Component {
               />
               <Route
                 path="/blog"
-                togglePlay={this.togglePlay}
                 render={() =>
                   userUtil.getUser() ? (
                     <BlogPage
                       handleUpdateMixes={this.handleUpdateMixes}
-                      togglePlay={this.togglePlay}
+                      {...this.state}
+                      {...this.actions}
                     />
                   ) : (
                     <Redirect to="/login" />
