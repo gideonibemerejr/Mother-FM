@@ -13,6 +13,14 @@ const Header = props => {
         <NavItem key={idx} {...item} />
       ))}
       <li className="mh2">
+        <NavLink
+          className="nav-link link biryani-black f6 ttu gray"
+          to="make-mixes"
+        >
+          Create a Mix
+        </NavLink>
+      </li>
+      <li className="mh2">
         <Link
           className="nav-link link biryani-black f6 ttu gray"
           to=""
