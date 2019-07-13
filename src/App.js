@@ -62,7 +62,16 @@ class App extends Component {
       this.widget.togglePlay()
     },
     playMix: mixName => {
+      // if mixName is the same as the currently playing mix, the app should pause it instead
+      const { currentMix } = this.state
+      if (mixName === currentMix) {
+        return this.widget.togglePlay()
+      }
+
+      // update the currentMix by its name and then start playing it immediately
       this.setState({ currentMix: mixName })
+
+      // load a new mix by its name and then start playing it immediately (true)
       this.widget.load(mixName, true)
     }
   }
@@ -145,12 +154,24 @@ class App extends Component {
               <Route
                 path="/culture"
                 togglePlay={this.togglePlay}
-                render={() => <CulturePage />}
+                render={() =>
+                  userUtil.getUser() ? (
+                    <CulturePage togglePlay={this.togglePlay} />
+                  ) : (
+                    <Redirect to="/login" />
+                  )
+                }
               />
               <Route
                 path="/blog"
                 togglePlay={this.togglePlay}
-                render={() => <BlogPage />}
+                render={() =>
+                  userUtil.getUser() ? (
+                    <BlogPage togglePlay={this.togglePlay} />
+                  ) : (
+                    <Redirect to="/login" />
+                  )
+                }
               />
             </div>
           </div>
