@@ -8,17 +8,16 @@ const Mix = ({ name, pictures, ...props }) => {
       className="aspect-ratio aspect-ratio--3x4 pointer bg-black cover bg-center"
       style={{ backgroundImage: `url(${pictures.extra_large})` }}
     >
-      <PlayMix {...props}>
-        <div className="ph3 pv4 aspect-ratio--object mix-overlay">
-          <div className="flex items-center relative z-2">
-            <h1 className="f4 f3-l mv0 white ttu biryani pr2 lh-title">
-              {name}
-            </h1>
-            {/* PlayButton goes here */}
-            <PlayButton />
-          </div>
+      <div className="ph3 pv4 aspect-ratio--object mix-overlay">
+        <div className="flex flex-column relative z-2">
+          <h1 className="f4 f3-l mv0 white ttu biryani pr2 lh-title">{name}</h1>
+          {/* PlayButton goes here */}
         </div>
-      </PlayMix>
+        {/* <Link to={`/show/${slug}`} className="absolute absolute--fill z-3" /> */}
+        <PlayMix {...props}>
+          <PlayButton />
+        </PlayMix>
+      </div>
     </div>
   )
 }

@@ -3,7 +3,6 @@ import tokenUtil from './tokenUtil'
 const BASE_URL = 'http://localhost:3001/api/mixes'
 
 function index() {
-  console.log('line 6')
   const options = {
     method: 'GET',
     headers: { Authorization: 'Bearer ' + tokenUtil.getToken() }

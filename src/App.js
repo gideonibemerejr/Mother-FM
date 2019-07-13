@@ -49,18 +49,17 @@ class App extends Component {
     this.widget = Mixcloud.PlayerWidget(this.player)
     // here the app waits for the widget to be ready before continuing
     await this.widget.ready
-    console.log(this.widget.events)
+    this.widget.play()
     // using the mixcloud widget events, the app can detect when the audio has been paused, set playing state to false
     this.widget.events.pause.on(this.handlePause)
     // audio is playing again, set playing state to true
     this.widget.events.play.on(this.handlePlay)
-    console.log('play')
   }
-  handlePause() {
+
+  handlePause = () => {
     this.setState({ playing: false })
-    console.log('working')
   }
-  handlePlay() {
+  handlePlay = () => {
     this.setState({ playing: true })
   }
 
@@ -173,7 +172,11 @@ class App extends Component {
                   />
                 )}
               />
-              <Route exact path="/about" render={() => <AboutPage />} />
+              <Route
+                exact
+                path="/about"
+                render={() => <AboutPage {...this.state} />}
+              />
 
               <Route
                 path="/archive"
@@ -205,17 +208,13 @@ class App extends Component {
               />
               <Route
                 path="/blog"
-                render={() =>
-                  userUtil.getUser() ? (
-                    <BlogPage
-                      handleUpdateMixes={this.handleUpdateMixes}
-                      {...this.state}
-                      {...this.actions}
-                    />
-                  ) : (
-                    <Redirect to="/login" />
-                  )
-                }
+                render={() => (
+                  <BlogPage
+                    handleUpdateMixes={this.handleUpdateMixes}
+                    {...this.state}
+                    {...this.actions}
+                  />
+                )}
               />
             </div>
           </div>
@@ -225,7 +224,7 @@ class App extends Component {
         <iframe
           width="100%"
           height="60"
-          src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2FNTSRadio%2Fmount-kimbie-king-krule-19th-april-2017%2F"
+          src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2FDJDimsa%2Fcapture-deep-jazzy-house-mix-2019%2F"
           frameBorder="0"
           title="Audio Player"
           className="db fixed bottom-0 z-5"
