@@ -6,7 +6,7 @@ const Mix = ({ name, pictures, slug, id, ...props }) => {
   return (
     <div
       className="aspect-ratio aspect-ratio--3x4 pointer bg-black cover bg-center"
-      style={{ backgroundImage: `url(${pictures.extra_large})` }}
+      //style={{ backgroundImage: `url(${pictures.extra_large})` }}
     >
       <PlayMix id={id} {...props}>
         <div className="ph3 pv4 aspect-ratio--object mix-overlay">

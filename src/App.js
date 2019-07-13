@@ -76,13 +76,13 @@ class App extends Component {
     }
   }
 
-  handleAddMix = ({ link }) => {
+  handleAddMix = link => {
     this.setState(
       state => ({ isAdding: !this.state.isPosting }),
       async function() {
         console.log(link)
 
-        await mixesUtil.create(link).then(result =>
+        await mixesUtil.createMix(link).then(result =>
           this.setState({
             mixes: [{ result }, ...this.state.mixes]
           })
@@ -90,12 +90,31 @@ class App extends Component {
       }
     )
   }
+  handleGetMixes = async () => {
+    const urls = await mixesUtil.index()
+    urls.map(async mix => {
+      try {
+        const response = await fetch(`https://api.mixcloud.com${mix.link}`)
+        const singleMix = await response.json()
+        this.handleUpdateMixes(singleMix)
+      } catch (error) {
+        throw new Error(error)
+      }
+    })
+  }
+
+  handleUpdateMixes = singleMix => {
+    console.log('cool')
+    this.setState((state, props) => ({ mixes: [...state.mixes, singleMix] }))
+    console.log(this.state)
+  }
 
   /*************************************************
   // * Lifecycle Methods 
   *************************************************/
   componentDidMount() {
     this.mountAudio()
+    this.handleGetMixes()
   }
 
   render() {
@@ -137,7 +156,13 @@ class App extends Component {
               <Route
                 exact
                 path="/"
-                render={props => <Home {...this.state} {...this.actions} />}
+                render={props => (
+                  <Home
+                    handleUpdateMixes={this.handleUpdateMixes}
+                    {...this.state}
+                    {...this.actions}
+                  />
+                )}
               />
               <Route exact path="/about" render={() => <AboutPage />} />
 
@@ -145,7 +170,10 @@ class App extends Component {
                 path="/archive"
                 render={props =>
                   userUtil.getUser() ? (
-                    <ArchivePage togglePlay={this.togglePlay} />
+                    <ArchivePage
+                      handleUpdateMixes={this.handleUpdateMixes}
+                      togglePlay={this.togglePlay}
+                    />
                   ) : (
                     <Redirect to="/login" />
                   )
@@ -156,7 +184,10 @@ class App extends Component {
                 togglePlay={this.togglePlay}
                 render={() =>
                   userUtil.getUser() ? (
-                    <CulturePage togglePlay={this.togglePlay} />
+                    <CulturePage
+                      handleUpdateMixes={this.handleUpdateMixes}
+                      togglePlay={this.togglePlay}
+                    />
                   ) : (
                     <Redirect to="/login" />
                   )
@@ -167,7 +198,10 @@ class App extends Component {
                 togglePlay={this.togglePlay}
                 render={() =>
                   userUtil.getUser() ? (
-                    <BlogPage togglePlay={this.togglePlay} />
+                    <BlogPage
+                      handleUpdateMixes={this.handleUpdateMixes}
+                      togglePlay={this.togglePlay}
+                    />
                   ) : (
                     <Redirect to="/login" />
                   )
