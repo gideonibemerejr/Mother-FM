@@ -1,10 +1,24 @@
 import React from 'react'
-
-const Home = ({ playMix, togglePlay }) => {
+import Mix from '../../components/Mix'
+const Home = props => {
   return (
     <div>
-      <h2>Home</h2>
-      <button onClick={() => togglePlay()}>Play Mix</button>
+      <div className="flex flex-wrap justify-between mixes ph3 ph4-l">
+        <div className="mix mb4">
+          <Mix
+            name="This Is The Blues"
+            id="/adamkvasnica3/this-is-the-blues/"
+            {...props}
+          />
+        </div>
+        <div className="mix mb4">
+          <Mix
+            name="Ambient treasures"
+            id="/salvatore-muscat/ambient-treasures-vol1-towards-the-dream/"
+            {...props}
+          />
+        </div>
+      </div>
     </div>
   )
 }

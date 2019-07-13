@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import { Link } from 'react-router-dom'
 class CreateForm extends Component {
   state = {
     link: ''
@@ -43,6 +43,7 @@ class CreateForm extends Component {
           />
         </div>
         <input type="submit" />
+        <Link to="/">Cancel</Link>
       </form>
     )
   }

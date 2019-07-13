@@ -25,7 +25,9 @@ class App extends Component {
   state = {
     mixes: [],
     user: userUtil.getUser(),
-    isPosting: false
+    isAdding: false,
+    playing: false,
+    currentMix: ''
   }
 
   /*************************************************
@@ -42,24 +44,32 @@ class App extends Component {
 
   // general purpose for handline Mixcloud Widget
   mountAudio = async () => {
-    // when we use the this keyword, our widget is
+    // when the app uses the this keyword, the widget is
     // now accessible anywhere inside the component
     this.widget = Mixcloud.PlayerWidget(this.player)
-    // here we wait for our widget to be ready before continuing
+    // here the app waits for the widget to be ready before continuing
     await this.widget.ready
 
-    this.widget.play()
+    // using the mixcloud widget events, the app can detect when the audio has been paused, set playing state to false
+    this.widget.events.pause.on(() => this.setState({ playing: false }))
+
+    // audio is playing again, set playing state to true
+    this.widget.events.play.on(() => this.setState({ playing: true }))
   }
-  togglePlay = () => {
-    this.widget.togglePlay()
-  }
-  playMix = () => {
-    this.widget.play()
+
+  actions = {
+    togglePlay: () => {
+      this.widget.togglePlay()
+    },
+    playMix: mixName => {
+      this.setState({ currentMix: mixName })
+      this.widget.load(mixName, true)
+    }
   }
 
   handleAddMix = ({ link }) => {
     this.setState(
-      state => ({ isPosting: !this.state.isPosting }),
+      state => ({ isAdding: !this.state.isPosting }),
       async function() {
         console.log(link)
 
@@ -118,9 +128,7 @@ class App extends Component {
               <Route
                 exact
                 path="/"
-                render={props => (
-                  <Home playMix={this.playMix} togglePlayan={this.togglePlayan} />
-                )}
+                render={props => <Home {...this.state} {...this.actions} />}
               />
               <Route exact path="/about" render={() => <AboutPage />} />
 
@@ -128,7 +136,7 @@ class App extends Component {
                 path="/archive"
                 render={props =>
                   userUtil.getUser() ? (
-                    <ArchivePage togglePlayan={this.togglePlayan} />
+                    <ArchivePage togglePlay={this.togglePlay} />
                   ) : (
                     <Redirect to="/login" />
                   )
@@ -136,12 +144,12 @@ class App extends Component {
               />
               <Route
                 path="/culture"
-                togglePlayan={this.togglePlayan}
+                togglePlay={this.togglePlay}
                 render={() => <CulturePage />}
               />
               <Route
                 path="/blog"
-                togglePlayan={this.togglePlayan}
+                togglePlay={this.togglePlay}
                 render={() => <BlogPage />}
               />
             </div>
@@ -152,7 +160,7 @@ class App extends Component {
         <iframe
           width="100%"
           height="60"
-          src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fsoulection%2Fshow-1-soulection-radio-launch%2F"
+          src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2FNTSRadio%2Fmount-kimbie-king-krule-19th-april-2017%2F"
           frameBorder="0"
           title="Audio Player"
           className="db fixed bottom-0 z-5"
