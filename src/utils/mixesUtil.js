@@ -1,6 +1,6 @@
 import tokenUtil from './tokenUtil'
 
-const BASE_URL = 'http://localhost:3001/api/mixes/'
+const BASE_URL = 'http://motherfmapi.herokuapp.com/api/mixes/'
 
 export default {
   index,

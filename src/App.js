@@ -41,12 +41,20 @@ class App extends Component {
   }
 
   // general purpose for handline Mixcloud Widget
-  handleMountAudio = async () => {
+  mountAudio = async () => {
     // when we use the this keyword, our widget is
     // now accessible anywhere inside the component
     this.widget = Mixcloud.PlayerWidget(this.player)
     // here we wait for our widget to be ready before continuing
     await this.widget.ready
+
+    this.widget.play()
+  }
+  togglePlay = () => {
+    this.widget.togglePlay()
+  }
+  playMix = () => {
+    this.widget.play()
   }
 
   handleAddMix = ({ link }) => {
@@ -68,7 +76,7 @@ class App extends Component {
   // * Lifecycle Methods 
   *************************************************/
   componentDidMount() {
-    this.handleMountAudio()
+    this.mountAudio()
   }
 
   render() {
@@ -107,21 +115,35 @@ class App extends Component {
               {/* Routed Pages */}
               {/* Pass state and any actions */}
               {/* // TODO: Create Protected Routes */}
-              <Route exact path="/" render={() => <Home />} />
+              <Route
+                exact
+                path="/"
+                render={props => (
+                  <Home playMix={this.playMix} togglePlayan={this.togglePlayan} />
+                )}
+              />
               <Route exact path="/about" render={() => <AboutPage />} />
 
               <Route
                 path="/archive"
-                render={() =>
+                render={props =>
                   userUtil.getUser() ? (
-                    <ArchivePage />
+                    <ArchivePage togglePlayan={this.togglePlayan} />
                   ) : (
                     <Redirect to="/login" />
                   )
                 }
               />
-              <Route path="/culture" render={() => <CulturePage />} />
-              <Route path="/blog" render={() => <BlogPage />} />
+              <Route
+                path="/culture"
+                togglePlayan={this.togglePlayan}
+                render={() => <CulturePage />}
+              />
+              <Route
+                path="/blog"
+                togglePlayan={this.togglePlayan}
+                render={() => <BlogPage />}
+              />
             </div>
           </div>
         </Switch>
@@ -130,7 +152,7 @@ class App extends Component {
         <iframe
           width="100%"
           height="60"
-          src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2FNTSRadio%2Ftiffany-calver-12th-july-2017%2F"
+          src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=%2Fsoulection%2Fshow-1-soulection-radio-launch%2F"
           frameBorder="0"
           title="Audio Player"
           className="db fixed bottom-0 z-5"
