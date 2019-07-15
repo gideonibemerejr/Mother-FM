@@ -1,3 +1,6 @@
+/*--------------------------------*/
+/*  * HTML Elements
+/*-------------------------------*/
 body {
   font-family: 'Work Sans', -apple-system, sans-serif;
   font-size: 1rem;
@@ -7,6 +10,60 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+tr {
+  transition: border-bottom 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+tr:hover {
+  border-bottom: #ff9500 solid 1px;
+}
+
+label {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+input {
+  width: 100%;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #999;
+  padding: 6px 30px;
+  box-sizing: border-box;
+}
+
+input,
+select,
+textarea {
+  outline: none;
+  appearance: unset !important;
+}
+
+figure {
+  margin: 0;
+}
+
+figure {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.signup-image > img {
+  max-width: 100%;
+  height: auto;
+}
+
+.signup-image-link {
+  font-size: 0.875rem;
+  display: block;
+  text-align: center;
+}
+
+/*--------------------------------*/
+/*  * Classes
+/*-------------------------------*/
 
 .pad-bottom {
   padding-bottom: 60px;
@@ -103,30 +160,102 @@ body {
 
 .main {
   background: #f8f8f8;
-  padding: 150px 0;
+  padding: 50px 0;
+  font-size: 13px;
+  line-height: 1.8;
 }
 
 .signup {
-  margin-bottom: 150px;
+  margin-bottom: 50px;
 }
 
-.container {
+.signup-container {
+  background: #fff;
+  margin: 0 auto;
+  box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
 }
-tr {
-  transition: border-bottom 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+.signup-content {
+  padding: 75px 0;
 }
 
-tr:hover {
-  border-bottom: #ff9500 solid 1px;
+.signup-form {
+  margin-left: 75px;
+  margin-right: 75px;
+  padding-left: 34px;
 }
-/*--------------------*/
-/*  * Media Queries
-/*-------------------*/
+.signup-form,
+.signup-image,
+.signin-form,
+.signin-image {
+  width: 50%;
+  overflow: hidden;
+}
+
+.form-title {
+  margin-bottom: 33px !important;
+  line-height: 1.66;
+  margin: 0;
+  padding: 0;
+  font-size: 36px;
+}
+
+.register-form {
+  width: 100%;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.form-group:last-child {
+  margin-bottom: 0px;
+}
+
+.signup-image {
+  margin: 0 55px;
+}
+.signup-image {
+  margin-top: 45px;
+}
+
+.form-submit {
+  display: inline-block;
+  border-bottom: none;
+  width: auto;
+  padding: 15px 39px;
+  border-radius: 5px;
+  margin-top: 25px;
+  cursor: pointer;
+}
+/*--------------------------------*/
+/*  * Media Queries 
+/*-------------------------------*/
 
 @media screen and (max-width: 1200px) {
-  .container {
+  .signup-container {
     width: calc(100% - 30px);
-    max-width: 100%;
+    max-width: 75%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .signup-container {
+    max-width: 960px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .signup-content,
+  .signin-content {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .signup-form,
+  .signup-image,
+  .signin-form,
+  .signin-image {
+    width: auto;
   }
 }
 
