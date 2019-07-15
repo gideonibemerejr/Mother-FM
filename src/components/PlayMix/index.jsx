@@ -4,7 +4,7 @@ const PlayMix = ({ playMix, id, currentMix, playing, children }) => {
   return (
     <div
       className={`pointer ${id === currentMix && playing && 'playing'} 
-      absolute bottom-1 left-1 z-5 flex items-left`}
+      `}
       onClick={() => playMix(id)}
     >
       {children}
@@ -13,3 +13,5 @@ const PlayMix = ({ playMix, id, currentMix, playing, children }) => {
 }
 
 export default PlayMix
+
+//absolute bottom-1 left-1 z-5 flex items-left
