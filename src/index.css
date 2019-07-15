@@ -44,6 +44,12 @@ body {
   background-image: url('./images/play-button.svg');
 }
 
+.mixcloud-link {
+  width: 80px;
+  height: 80px;
+  background-image: url('./images/mixcloud-link.svg')
+}
+
 .playing .play-button {
   background-image: url('./images/pause-button.svg');
 }
