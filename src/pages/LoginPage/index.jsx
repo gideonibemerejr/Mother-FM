@@ -27,49 +27,63 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <section className="signup">
-        <div className="container">
-          <div className="signup-content">
-            <div className="signup-form">
-              <h2 className="form-title">Login</h2>
-              <form
-                onSubmit={this.handleSubmit}
-                className="register-form"
-                id="register-form"
-              >
-                <div className="form-group">
-                  <label htmlFor="email">i</label>
-                  <input
-                    onChange={this.handleChange}
-                    value={this.state.email}
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Your Email"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="password">i</label>
-                  <input
-                    onChange={this.handleChange}
-                    value={this.state.pw}
-                    type="password"
-                    name="pw"
-                    id="password"
-                    placeholder="Password"
-                  />
-                </div>
-                <div className="form-group form-button">
-                  <button className="f6 link dim br2 ph3 pv2 mb2 dib white bg-black">
-                    Login
-                  </button>
-                  <Link to="/">Cancel</Link>
-                </div>
-              </form>
+      <main className="main-login ma2">
+        <section className="signin">
+          <div className="signup-container">
+            <div className="signup-content flex">
+              <div className="signup-image">
+                <figure>
+                  <img src="https://imgur.com/lfRCB3I.png" alt="" />
+                </figure>
+                <Link className="signup-image-link" to="/signup">
+                  Create an account
+                </Link>
+              </div>
+              <div className="signup-form">
+                <h2 className="form-title">Login</h2>
+                <form
+                  onSubmit={this.handleSubmit}
+                  className="register-form"
+                  id="register-form"
+                >
+                  <div className="form-group">
+                    <label htmlFor="email">
+                      <i class="zmdi zmdi-email" />
+                    </label>
+                    <input
+                      onChange={this.handleChange}
+                      value={this.state.email}
+                      type="email"
+                      name="email"
+                      id="email"
+                      placeholder="Your Email"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="password">
+                      <i class="zmdi zmdi-lock" />
+                    </label>
+                    <input
+                      onChange={this.handleChange}
+                      value={this.state.pw}
+                      type="password"
+                      name="pw"
+                      id="password"
+                      placeholder="Password"
+                    />
+                  </div>
+                  <div className="form-group flex flex-wrap form-button justify-between items-baseline">
+                    <button className="form-submit white bg-black">
+                      Login
+                    </button>
+                    <Link to="/">Back</Link>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
     )
   }
 }
