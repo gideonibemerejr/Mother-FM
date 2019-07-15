@@ -44,13 +44,19 @@ body {
   background-image: url('./images/play-button.svg');
 }
 
+.mixcloud-link {
+  width: 80px;
+  height: 80px;
+  background-image: url('./images/mixcloud-arrow.svg');
+}
+
 .playing .play-button {
   background-image: url('./images/pause-button.svg');
 }
 
-.archive .play-button {
-  width: 36px;
-  height: 36px;
+.archive .mixcloud-link {
+  width: 40px;
+  height: 40px;
 }
 
 .mixes .play-button {
@@ -106,7 +112,13 @@ body {
 
 .container {
 }
+tr {
+  transition: border-bottom 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
 
+tr:hover {
+  border-bottom: #ff9500 solid 1px;
+}
 /*--------------------*/
 /*  * Media Queries
 /*-------------------*/

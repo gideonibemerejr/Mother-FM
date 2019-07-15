@@ -14,9 +14,11 @@ const Mix = ({ name, pictures, ...props }) => {
           {/* PlayButton goes here */}
         </div>
         {/* <Link to={`/show/${slug}`} className="absolute absolute--fill z-3" /> */}
-        <PlayMix {...props}>
-          <PlayButton />
-        </PlayMix>
+        <div className="absolute bottom-1 left-1 z-5 flex items-left pointer">
+          <PlayMix {...props}>
+            <PlayButton />
+          </PlayMix>
+        </div>
       </div>
     </div>
   )
