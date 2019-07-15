@@ -129,3 +129,9 @@ tr:hover {
     max-width: 100%;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .nav-link {
+    font-size: 0.75rem;
+  }
+}

@@ -19,7 +19,7 @@ import Header from './components/Header'
 import FeaturedMix from './components/FeaturedMix'
 import userUtil from './utils/userUtil'
 import mixesUtil from './utils/mixesUtil'
-import 'tachyons'
+
 
 class App extends Component {
   state = {
