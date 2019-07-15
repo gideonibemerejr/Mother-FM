@@ -9,7 +9,6 @@ class LoginPage extends Component {
   }
 
   handleChange = e => {
-    // TODO: HANDLE CHANGE FOR CONTROLLED FORM
     this.setState({
       [e.target.name]: e.target.value
     })
