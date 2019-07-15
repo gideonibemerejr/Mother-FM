@@ -1,6 +1,6 @@
 import tokenUtil from './tokenUtil'
 
-const BASE_URL = 'http://motherfmapi.herokuapp.com/api/mixes'
+const BASE_URL = 'https://motherfmapi.herokuapp.com/api/mixes'
 
 function index() {
   const options = {
