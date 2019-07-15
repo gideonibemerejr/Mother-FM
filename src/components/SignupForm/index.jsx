@@ -38,17 +38,19 @@ class SignupForm extends Component {
   render() {
     return (
       <section className="signup">
-        <div className="container">
-          <div className="signup-content">
+        <div className="signup-container">
+          <div className="signup-content flex">
             <div className="signup-form">
-              <h2 className="form-title">Sign up</h2>
+              <h2 className="form-title mb4">Sign up</h2>
               <form
                 onSubmit={this.handleSubmit}
                 className="register-form"
                 id="register-form"
               >
                 <div className="form-group">
-                  <label htmlFor="name">i</label>
+                  <label htmlFor="name">
+                    <i class="zmdi zmdi-account material-icons-name" />
+                  </label>
                   <input
                     onChange={this.handleChange}
                     value={this.state.name}
@@ -59,7 +61,9 @@ class SignupForm extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="email">i</label>
+                  <label htmlFor="email">
+                    <i class="zmdi zmdi-email" />
+                  </label>
                   <input
                     onChange={this.handleChange}
                     value={this.state.email}
@@ -70,7 +74,9 @@ class SignupForm extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="password">i</label>
+                  <label htmlFor="password">
+                    <i class="zmdi zmdi-lock" />
+                  </label>
                   <input
                     onChange={this.handleChange}
                     value={this.state.password}
@@ -81,7 +87,9 @@ class SignupForm extends Component {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="passwordConf">i</label>
+                  <label htmlFor="passwordConf">
+                    <i class="zmdi zmdi-lock-outline" />
+                  </label>
                   <input
                     onChange={this.handleChange}
                     value={this.state.passwordConf}
@@ -91,16 +99,26 @@ class SignupForm extends Component {
                     placeholder="Repeat your password"
                   />
                 </div>
-                <div className="form-group form-button">
+                <div className="form-group flex-wrap form-button">
                   <button
-                    className="f6 link dim br2 ph3 pv2 mb2 dib white bg-black"
+                    className="white bg-black form-submit"
                     disabled={this.isFormInvalid()}
                   >
                     Sign Up
                   </button>
-                  <Link to="/">Cancel</Link>
+                  <Link to="/" className="ma4">
+                    Go Back
+                  </Link>
                 </div>
               </form>
+            </div>
+            <div className="signup-image">
+              <figure>
+                <img src="https://imgur.com/m82c8QD.png" alt="" />
+              </figure>
+              <Link className="signup-image-link" to="/login">
+                I already have an account
+              </Link>
             </div>
           </div>
         </div>
