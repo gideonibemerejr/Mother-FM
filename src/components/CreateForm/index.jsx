@@ -32,14 +32,13 @@ class CreateForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
-          <label htmlFor="link">i</label>
           <input
             onChange={this.handleChange}
             value={this.state.link}
             type="text"
             name="link"
             id="link"
-            placeholder="Enter the path to the mix"
+            placeholder="Mixcloud URL"
           />
         </div>
         <input type="submit" />
