@@ -3,7 +3,6 @@ import React from 'react'
 import ArchiveLink from '../../components/ArchiveLink'
 import util from '../../utils/utils'
 const Archive = ({ mixes, ...props }) => {
-  console.log(mixes)
   return (
     // <ul className="list pl0 archive mv0 pad-bottom">
     //   {mixes.map((mix, idx) => (
@@ -19,23 +18,30 @@ const Archive = ({ mixes, ...props }) => {
     // </ul>
     <table style={{ width: '100%' }}>
       <thead>
-        <th colspan="2">{util.getYear()}</th>
+        <tr colSpan="2">
+          <th> FOUND IN {util.getYear()}</th>
+        </tr>
       </thead>
       <tbody className="list pl0 mr5 archive mv0 pad-bottom">
         {mixes.map((mix, idx) => (
-          //<PlayMix {...props}>
           <tr
             key={idx}
             className="pv3 ml4 mr4 bb b--light-gray flex justify-between items-center"
           >
             <td>
-              <h1 className="f6 mv0 black ttu biryani pr2">{mix.name}</h1>
+              <a
+                style={{ textDecoration: 'none' }}
+                rel="noopener noreferrer"
+                target="_blank"
+                href={mix.url}
+              >
+                <h1 className="f6 mv0 black ttu biryani pr2">{mix.name}</h1>
+              </a>
             </td>
             <td>
               <ArchiveLink {...mix} />
             </td>
           </tr>
-          // </PlayMix>
         ))}
       </tbody>
     </table>
