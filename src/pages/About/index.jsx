@@ -32,25 +32,31 @@ const About = ({ mixes }) => (
         repudiandae quam soluta vel delectus amet quod ad numquam saepe!
         Ratione.
       </p>
-      <Stat statName="Featuring…" statNumber={mixes.length} statWord="mixes" />
-      {/* play_count */}
-      <Stat
-        statName="Played…"
-        statNumber={mixes.reduce(
-          (accum, current) => accum + current.play_count,
-          0
-        )}
-        statWord="times"
-      />
-      {/* audio_length */}
-      <Stat
-        statName="With…"
-        statNumber={mixes.reduce(
-          (accum, current) => accum + current.audio_length,
-          0
-        )}
-        statWord="seconds"
-      />
+      <div className="flex justify-between">
+        <Stat
+          statName="Featuring…"
+          statNumber={mixes.length}
+          statWord="mixes"
+        />
+        {/* play_count */}
+        <Stat
+          statName="Played…"
+          statNumber={mixes.reduce(
+            (accum, current) => accum + current.play_count,
+            0
+          )}
+          statWord="times"
+        />
+        {/* audio_length */}
+        <Stat
+          statName="With…"
+          statNumber={mixes.reduce(
+            (accum, current) => accum + current.audio_length,
+            0
+          )}
+          statWord="seconds"
+        />
+      </div>
     </div>
   </div>
 )

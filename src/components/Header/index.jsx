@@ -8,7 +8,7 @@ const Header = props => {
   const NavItems = menu.slice(0, size)
 
   let nav = props.user ? (
-    <ul className="list flex justify-center pl0">
+    <ul className="list flex flex-wrap justify-center pl0">
       {menu.map((item, idx) => (
         <NavItem key={idx} {...item} />
       ))}
