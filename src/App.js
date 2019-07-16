@@ -20,12 +20,12 @@ import FeaturedMix from './components/FeaturedMix'
 import userUtil from './utils/userUtil'
 import mixesUtil from './utils/mixesUtil'
 
-
 class App extends Component {
   state = {
     mixes: [],
     user: userUtil.getUser(),
     isAdding: false,
+    isOpen: false,
     playing: false,
     currentMix: ''
   }
@@ -41,7 +41,11 @@ class App extends Component {
   handleSignupOrLogin = () => {
     this.setState({ user: userUtil.getUser() })
   }
-
+  handleMenuClick = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    })
+  }
   // general purpose for handline Mixcloud Widget
   mountAudio = async () => {
     // when the app uses the this keyword, the widget is
@@ -157,7 +161,12 @@ class App extends Component {
               id={firstMix.key}
             />
             <div className="w-50-l relative z-1">
-              <Header user={this.state.user} handleLogout={this.handleLogout} />
+              <Header
+                user={this.state.user}
+                handleLogout={this.handleLogout}
+                handleMenuClick={this.handleMenuClick}
+                isOpen={this.state.isOpen}
+              />
               {/* Routed Pages */}
               {/* Pass state and any actions */}
               {/* // TODO: Create Protected Routes */}

@@ -19,7 +19,7 @@ const Stat = ({ statName, statNumber, statWord, ...props }) => (
 )
 
 const About = ({ mixes }) => (
-  <div className="ph3 ph4-l pad-bottom">
+  <div className="ph3 ph4-l pad-bottom fade-in">
     <div className="measure center lh-copy">
       <p className="mt0">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde mollitia

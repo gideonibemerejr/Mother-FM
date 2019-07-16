@@ -15,6 +15,27 @@ tr {
   transition: border-bottom 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
+ul.active {
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.5s;
+}
+.fade-in {
+  opacity: 1;
+  animation: fadeInOpacity 0.75s ease-in;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 tr:hover {
   border-bottom: #ff9500 solid 1px;
 }
@@ -236,6 +257,14 @@ figure {
   margin-top: 25px;
   cursor: pointer;
 }
+
+.dropdown {
+  margin-left: -100px;
+}
+
+ul.list.absolute {
+  box-shadow: 1px 1px 1px 1px #ccc;
+}
 /*--------------------------------*/
 /*  * Media Queries 
 /*-------------------------------*/
@@ -249,6 +278,11 @@ figure {
 @media screen and (min-width: 1024px) {
   .signup-container {
     max-width: 960px;
+  }
+}
+@media screen and (max-width: 960px) {
+  .icon {
+    padding-top: 2rem;
   }
 }
 @media screen and (max-width: 768px) {
