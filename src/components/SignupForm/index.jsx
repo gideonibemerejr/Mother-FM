@@ -99,16 +99,14 @@ class SignupForm extends Component {
                     placeholder="Repeat your password"
                   />
                 </div>
-                <div className="form-group flex-wrap form-button">
+                <div className="form-group flex flex-wrap form-button justify-between items-baseline">
                   <button
                     className="white bg-black form-submit"
                     disabled={this.isFormInvalid()}
                   >
                     Sign Up
                   </button>
-                  <Link to="/" className="ma4">
-                    Go Back
-                  </Link>
+                  <Link to="/">Back</Link>
                 </div>
               </form>
             </div>

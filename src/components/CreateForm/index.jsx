@@ -30,21 +30,33 @@ class CreateForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="link">i</label>
-          <input
-            onChange={this.handleChange}
-            value={this.state.link}
-            type="text"
-            name="link"
-            id="link"
-            placeholder="Enter the path to the mix"
-          />
+      <main className="signup">
+        <div className="vh-100 flex justify-center items-center">
+          <div className="signup-form">
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="link">
+                  <i class="zmdi zmdi-link" />
+                </label>
+                <input
+                  onChange={this.handleChange}
+                  value={this.state.link}
+                  type="text"
+                  name="link"
+                  id="link"
+                  placeholder="Mixcloud URL"
+                />
+              </div>
+              <div className="form-group flex flex-wrap form-button justify-between items-baseline">
+                <button className="white bg-black form-submit">
+                  Create Mix
+                </button>
+                <Link to="/">Back</Link>
+              </div>
+            </form>
+          </div>
         </div>
-        <input type="submit" />
-        <Link to="/">Cancel</Link>
-      </form>
+      </main>
     )
   }
 }

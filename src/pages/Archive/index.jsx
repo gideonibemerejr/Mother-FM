@@ -22,11 +22,11 @@ const Archive = ({ mixes, ...props }) => {
           <th> FOUND IN {util.getYear()}</th>
         </tr>
       </thead>
-      <tbody className="list pl0 mr5 archive mv0 pad-bottom">
+      <tbody className="list pl0 mr5 archive mv0 pad-bottom fade-in">
         {mixes.map((mix, idx) => (
           <tr
             key={idx}
-            className="pv3 ml4 mr4 bb b--light-gray flex justify-between items-center"
+            className="pv3 ml4 mr4 bb b--light-gray flex justify-between items-center "
           >
             <td>
               <a

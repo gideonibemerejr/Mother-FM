@@ -12,23 +12,6 @@ const Header = props => {
       {menu.map((item, idx) => (
         <NavItem key={idx} {...item} />
       ))}
-      <li className="mh2">
-        <NavLink
-          className="nav-link link biryani-black f6 ttu gray"
-          to="make-mixes"
-        >
-          Create a Mix
-        </NavLink>
-      </li>
-      <li className="mh2">
-        <Link
-          className="nav-link link biryani-black f6 ttu gray"
-          to=""
-          onClick={props.handleLogout}
-        >
-          Log Out
-        </Link>
-      </li>
     </ul>
   ) : (
     <ul className="list flex justify-center pl0">
@@ -53,13 +36,52 @@ const Header = props => {
       </li>
     </ul>
   )
+  let profile = props.user ? (
+    <nav className="ph4 mt4 ph4-l pb4">
+      <div className=" icon flex justify-end">
+        <i
+          onClick={props.handleMenuClick}
+          class=" absolute zmdi zmdi-account material-icons-name zmdi-hc-lg"
+        />
+        {!!props.isOpen ? (
+          <ul
+            className={`bg-white pa3 list absolute dropdown ${
+              props.isOpen ? 'active' : ''
+            }`}
+          >
+            <li>
+              <NavLink
+                className="nav-link link biryani-black f6 ttu gray"
+                to="make-mixes"
+              >
+                Create a Mix
+              </NavLink>
+            </li>
+            <li>
+              <Link
+                className="nav-link link biryani-black f6 ttu gray"
+                to=""
+                onClick={props.handleLogout}
+              >
+                Log Out, {props.user.name}
+              </Link>
+            </li>
+          </ul>
+        ) : null}
+      </div>
+    </nav>
+  ) : null
+
   return (
-    <header className="black mb5 pt5">
-      <Link to="/" style={{ color: '#000', textDecoration: 'none' }}>
-        <h1 className="ttu f3 tracked-mega anton tc mt0 mb3">Mother FM</h1>
-      </Link>
-      {nav}
-    </header>
+    <>
+      {profile}
+      <header className="black mb5 mt4">
+        <Link to="/" style={{ color: '#000', textDecoration: 'none' }}>
+          <h1 className="ttu f3 tracked-mega anton tc mt0 mb3">Mother FM</h1>
+        </Link>
+        {nav}
+      </header>
+    </>
   )
 }
 
