@@ -31,6 +31,20 @@ ul.active {
   animation-timing-function: ease-in;
   animation-duration: 0.5s;
 }
+
+div.stat:nth-child(1) {
+  opacity: 1;
+  animation: fadeInOpacity 0.5s ease-in;
+}
+div.stat:nth-child(2) {
+  opacity: 1;
+  animation: fadeInOpacity 1.5s ease-in;
+}
+div.stat:nth-child(3) {
+  opacity: 1;
+  animation: fadeInOpacity 2.5s ease-in;
+}
+
 .fade-in {
   opacity: 1;
   animation: fadeInOpacity 0.75s ease-in;

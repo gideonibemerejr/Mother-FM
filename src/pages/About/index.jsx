@@ -2,7 +2,7 @@ import React from 'react'
 import Counter from '../../components/Counter'
 
 const Stat = ({ statName, statNumber, statWord, ...props }) => (
-  <div className="mb4" style={{ marginRight: -2 }}>
+  <div className="mb4 fade-in stat" style={{ marginRight: -2 }}>
     <div className="f5 biryani mb0 b">{statName}</div>
     <div className="f1 b orange mb0 lh-1">
       <Counter
@@ -19,20 +19,20 @@ const Stat = ({ statName, statNumber, statWord, ...props }) => (
 )
 
 const About = ({ mixes }) => (
-  <div className="ph3 ph4-l pad-bottom fade-in">
+  <div className="ph3 ph4-l pad-bottom">
     <div className="measure center lh-copy">
-      <p className="mt0">
+      <p className="mt0 fade-in">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde mollitia
         assumenda, repudiandae nesciunt necessitatibus ratione, quae esse
         laudantium explicabo eligendi illum. Magni dignissimos rerum sed
         distinctio tempora.
       </p>
-      <p className="mb4">
+      <p className="mb4 fade-inp">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis
         repudiandae quam soluta vel delectus amet quod ad numquam saepe!
         Ratione.
       </p>
-      <div className="flex justify-between">
+      <div className="flex justify-between ">
         <Stat
           statName="Featuring…"
           statNumber={mixes.length}
