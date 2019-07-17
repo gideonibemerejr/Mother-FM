@@ -215,6 +215,7 @@ figure {
   padding: 50px 0;
   font-size: 13px;
   line-height: 1.8;
+  height: 100vh;
 }
 
 .main-login {

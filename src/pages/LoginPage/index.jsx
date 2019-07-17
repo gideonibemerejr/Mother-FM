@@ -27,7 +27,7 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <main className="main-login ma2">
+      <main className="main-login">
         <section className="signin">
           <div className="signup-container">
             <div className="signup-content flex">
