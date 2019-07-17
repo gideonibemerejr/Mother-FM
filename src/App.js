@@ -46,7 +46,6 @@ class App extends Component {
     this.setState({ user: userUtil.getUser() })
   }
   handleMenuClick = () => {
-    console.log('clicking')
     this.setState({
       isOpen: !this.state.isOpen
     })
@@ -128,20 +127,6 @@ class App extends Component {
         console.log(error)
       }
     })
-  }
-
-  handleGetPosts = async () => {
-    const posts = await postsUtil.index()
-    console.log(posts)
-    // urls.map(async mix => {
-    //   try {
-    //     const response = await fetch(`https://api.mixcloud.com${mix.link}`)
-    //     const singleMix = await response.json()
-    //     this.handleUpdatePosts(single)
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // })
   }
 
   handleUpdateMixes = singleMix => {
