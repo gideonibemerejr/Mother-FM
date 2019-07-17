@@ -20,11 +20,6 @@ const menu = [
     children: 'Archive',
     className: linkClass,
     to: '/archive'
-  },
-  {
-    children: 'Culture',
-    className: linkClass,
-    to: '/culture'
   }
 ]
 

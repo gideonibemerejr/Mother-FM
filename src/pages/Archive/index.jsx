@@ -16,7 +16,7 @@ const Archive = ({ mixes, ...props }) => {
     //     </li>
     //   ))}
     // </ul>
-    <table style={{ width: '100%' }}>
+    <table className="pb2 mb7" style={{ width: '100%' }}>
       <thead>
         <tr colSpan="2">
           <th> FOUND IN {util.getYear()}</th>

@@ -5,24 +5,28 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
+  Redirect,
+  Link,
+  NavLink
 } from 'react-router-dom'
 import AboutPage from './pages/About'
 import ArchivePage from './pages/Archive'
-import CulturePage from './pages/Culture'
 import BlogPage from './pages/Blog'
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 import CreateMixPage from './pages/CreateMixPage'
+import CreatePostPage from './pages/CreatePostPage'
 import Home from './pages/Home'
 import Header from './components/Header'
 import FeaturedMix from './components/FeaturedMix'
 import userUtil from './utils/userUtil'
 import mixesUtil from './utils/mixesUtil'
+import postsUtil from './utils/postsUtil'
 
 class App extends Component {
   state = {
     mixes: [],
+    posts: [],
     user: userUtil.getUser(),
     isAdding: false,
     isOpen: false,
@@ -42,6 +46,7 @@ class App extends Component {
     this.setState({ user: userUtil.getUser() })
   }
   handleMenuClick = () => {
+    console.log('clicking')
     this.setState({
       isOpen: !this.state.isOpen
     })
@@ -88,7 +93,7 @@ class App extends Component {
 
   handleAddMix = link => {
     this.setState(
-      state => ({ isAdding: !this.state.isPosting }),
+      state => ({ isAdding: !this.state.isAdding }),
       async function() {
         await mixesUtil.createMix(link).then(result =>
           this.setState({
@@ -98,6 +103,21 @@ class App extends Component {
       }
     )
   }
+
+  handleAddPost = post => {
+    this.setState(
+      state => ({ isAdding: !this.state.isAdding }),
+      console.log(post),
+      async function() {
+        await postsUtil.createPost(post).then(result =>
+          this.setState({
+            posts: [{ result }, ...this.state.posts]
+          })
+        )
+      }
+    )
+  }
+
   handleGetMixes = async () => {
     const urls = await mixesUtil.index()
     urls.map(async mix => {
@@ -106,9 +126,22 @@ class App extends Component {
         const singleMix = await response.json()
         this.handleUpdateMixes(singleMix)
       } catch (error) {
-        throw new Error(error)
+        console.log(error)
       }
     })
+  }
+  handleGetPosts = async () => {
+    const posts = await postsUtil.index()
+    console.log(posts)
+    // urls.map(async mix => {
+    //   try {
+    //     const response = await fetch(`https://api.mixcloud.com${mix.link}`)
+    //     const singleMix = await response.json()
+    //     this.handleUpdatePosts(single)
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    // })
   }
 
   handleUpdateMixes = singleMix => {
@@ -130,8 +163,13 @@ class App extends Component {
         <Switch>
           <Route
             exact
-            path="/make-mixes"
+            path="/create-mix"
             render={() => <CreateMixPage handleAddMix={this.handleAddMix} />}
+          />
+          <Route
+            exact
+            path="/create-post"
+            render={() => <CreatePostPage handleAddPost={this.handleAddPost} />}
           />
           <Route
             path="/login"
@@ -160,7 +198,62 @@ class App extends Component {
               {...firstMix}
               id={firstMix.key}
             />
-            <div className="w-50-l relative z-1">
+            {this.state.user ? (
+              <nav className="profile flex justify-center items-center bg-black">
+                <ul onClick={this.handleMenuClick} className="list flex">
+                  <li className="mh5">
+                    <NavLink
+                      className="nav-link link biryani-black f6 ttu white"
+                      to="create-mix"
+                    >
+                      Add Mix
+                    </NavLink>
+                  </li>
+                  <li className="mh5">
+                    <NavLink
+                      className="nav-link link biryani-black f6 ttu white"
+                      to="create-post"
+                    >
+                      Add Post
+                    </NavLink>
+                  </li>
+                  <li className="mh5">
+                    <Link
+                      className="nav-link link biryani-black f6 ttu white"
+                      to=""
+                      onClick={this.handleLogout}
+                    >
+                      Log Out, {this.state.user.name}
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+            ) : null}
+
+            <div
+              id="main"
+              className={`w-50-l bg-white relative z-1 ${
+                this.state.isOpen ? 'open' : ''
+              }`}
+            >
+              {this.state.user ? (
+                <div
+                  onClick={this.handleMenuClick}
+                  className="mt4 ph4 ph4-l flex justify-end items-center icon"
+                >
+                  {this.state.isOpen ? (
+                    <>
+                      close &nbsp;
+                      <i className="zmdi zmdi-close zmdi-hc-lg" />
+                    </>
+                  ) : (
+                    <>
+                      {this.state.user.name}&nbsp;&nbsp;
+                      <i className=" zmdi zmdi-account  zmdi-hc-lg" />
+                    </>
+                  )}
+                </div>
+              ) : null}
               <Header
                 user={this.state.user}
                 handleLogout={this.handleLogout}
@@ -201,25 +294,12 @@ class App extends Component {
                   )
                 }
               />
-              <Route
-                path="/culture"
-                render={() =>
-                  userUtil.getUser() ? (
-                    <CulturePage
-                      handleUpdateMixes={this.handleUpdateMixes}
-                      {...this.state}
-                      {...this.actions}
-                    />
-                  ) : (
-                    <Redirect to="/login" />
-                  )
-                }
-              />
+
               <Route
                 path="/blog"
                 render={() => (
                   <BlogPage
-                    handleUpdateMixes={this.handleUpdateMixes}
+                    handleUpdatePosts={this.handleUpdatePosts}
                     {...this.state}
                     {...this.actions}
                   />

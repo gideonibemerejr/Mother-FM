@@ -1,6 +1,15 @@
 /*--------------------------------*/
 /*  * HTML Elements
 /*-------------------------------*/
+ul.list.flex {
+  padding-inline-start: 0;
+}
+a.ttu.white:hover {
+  color: #ff9500;
+}
+div.icon {
+  cursor: pointer;
+}
 body {
   font-family: 'Work Sans', -apple-system, sans-serif;
   font-size: 1rem;
@@ -46,13 +55,20 @@ label {
   top: 50%;
   transform: translateY(-50%);
 }
-input {
+label[for='textarea'] {
+  position: relative;
+}
+input,
+textarea {
   width: 100%;
   display: block;
   border: none;
   border-bottom: 1px solid #999;
   padding: 6px 30px;
   box-sizing: border-box;
+}
+textarea {
+  padding: 6px 0;
 }
 
 input,
@@ -258,13 +274,21 @@ figure {
   cursor: pointer;
 }
 
-.dropdown {
-  margin-left: -100px;
+.profile {
+  position: fixed;
+  border: 1px solid black;
+  top: 0;
+  right: 0;
+  width: 50vw;
+  height: 70px;
+}
+div#main {
+  transition: transform 0.5s;
+}
+div#main.open {
+  transform: translate(0, 70px);
 }
 
-ul.list.absolute {
-  box-shadow: 1px 1px 1px 1px #ccc;
-}
 /*--------------------------------*/
 /*  * Media Queries 
 /*-------------------------------*/
@@ -283,6 +307,17 @@ ul.list.absolute {
 @media screen and (max-width: 960px) {
   .icon {
     padding-top: 2rem;
+  }
+  .profile {
+    position: relative;
+    border: 1px solid black;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 70px;
+  }
+  div.icon {
+    display: none;
   }
 }
 @media screen and (max-width: 768px) {

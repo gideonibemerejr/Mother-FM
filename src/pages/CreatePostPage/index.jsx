@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import CreateForm from '../../components/CreateForm'
 
-class CreateMixPage extends Component {
+class CreatePostPage extends Component {
   render() {
     return (
       <div>
-        <CreateForm type={'Mix'} handleAddMix={this.props.handleAddMix} />
+        <CreateForm type={'Post'} handleAddPost={this.props.handleAddPost} />
       </div>
     )
   }
 }
 
-export default CreateMixPage
+export default CreatePostPage
