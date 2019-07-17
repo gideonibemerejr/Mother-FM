@@ -22,16 +22,13 @@ const About = ({ mixes }) => (
   <div className="ph3 ph4-l pad-bottom">
     <div className="measure center lh-copy">
       <p className="mt0 fade-in">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde mollitia
-        assumenda, repudiandae nesciunt necessitatibus ratione, quae esse
-        laudantium explicabo eligendi illum. Magni dignissimos rerum sed
-        distinctio tempora.
+        Mother FM is an up and coming, internet radio station that will _mother_
+        several radio shows, podcasts, and mix archives. V1.0 of the application
+        serves as the MVP and is the first and only open call for users to
+        submit mixes through the Add Mix form. Additionally, the MVP provides
+        some simple functionality to view mixes, blog posts, and an archive.
       </p>
-      <p className="mb4 fade-inp">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis
-        repudiandae quam soluta vel delectus amet quod ad numquam saepe!
-        Ratione.
-      </p>
+      <p className="mb4 fade-in">World wide music for listening.</p>
       <div className="flex justify-between ">
         <Stat
           statName="Featuring…"
