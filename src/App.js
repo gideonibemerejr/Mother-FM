@@ -190,124 +190,126 @@ class App extends Component {
               />
             )}
           />
-          <div className="flex-l justify-end">
-            {/* Featured Mix Component */}
-            <FeaturedMix
-              {...this.state}
-              {...this.actions}
-              {...firstMix}
-              id={firstMix.key}
-            />
-            {this.state.user ? (
-              <nav className="profile flex justify-center items-center bg-black">
-                <ul onClick={this.handleMenuClick} className="list flex">
-                  <li className="mh5">
-                    <NavLink
-                      className="nav-link link biryani-black f6 ttu white"
-                      to="create-mix"
-                    >
-                      Add Mix
-                    </NavLink>
-                  </li>
-                  <li className="mh5">
-                    <NavLink
-                      className="nav-link link biryani-black f6 ttu white"
-                      to="create-post"
-                    >
-                      Add Post
-                    </NavLink>
-                  </li>
-                  <li className="mh5">
-                    <Link
-                      className="nav-link link biryani-black f6 ttu white"
-                      to=""
-                      onClick={this.handleLogout}
-                    >
-                      Log Out, {this.state.user.name}
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-            ) : null}
-
-            <div
-              id="main"
-              className={`w-50-l bg-white relative z-1 ${
-                this.state.isOpen ? 'open' : ''
-              }`}
-            >
+          <>
+            <div className="flex-l justify-end">
+              {/* Featured Mix Component */}
+              <FeaturedMix
+                {...this.state}
+                {...this.actions}
+                {...firstMix}
+                id={firstMix.key}
+              />
               {this.state.user ? (
-                <div
-                  onClick={this.handleMenuClick}
-                  className="mt4 ph4 ph4-l flex justify-end items-center icon"
-                >
-                  {this.state.isOpen ? (
-                    <>
-                      close &nbsp;
-                      <i className="zmdi zmdi-close zmdi-hc-lg" />
-                    </>
-                  ) : (
-                    <>
-                      {this.state.user.name}&nbsp;&nbsp;
-                      <i className=" zmdi zmdi-account  zmdi-hc-lg" />
-                    </>
-                  )}
-                </div>
+                <nav className="profile flex justify-center items-center bg-black">
+                  <ul onClick={this.handleMenuClick} className="list flex">
+                    <li className="mh5">
+                      <NavLink
+                        className="nav-link link biryani-black f6 ttu white"
+                        to="create-mix"
+                      >
+                        Add Mix
+                      </NavLink>
+                    </li>
+                    <li className="mh5">
+                      <NavLink
+                        className="nav-link link biryani-black f6 ttu white"
+                        to="create-post"
+                      >
+                        Add Post
+                      </NavLink>
+                    </li>
+                    <li className="mh5">
+                      <Link
+                        className="nav-link link biryani-black f6 ttu white"
+                        to=""
+                        onClick={this.handleLogout}
+                      >
+                        Log Out, {this.state.user.name}
+                      </Link>
+                    </li>
+                  </ul>
+                </nav>
               ) : null}
-              <Header
-                user={this.state.user}
-                handleLogout={this.handleLogout}
-                handleMenuClick={this.handleMenuClick}
-                isOpen={this.state.isOpen}
-              />
-              {/* Routed Pages */}
-              {/* Pass state and any actions */}
-              {/* // TODO: Create Protected Routes */}
-              <Route
-                exact
-                path="/"
-                render={() => (
-                  <Home
-                    handleUpdateMixes={this.handleUpdateMixes}
-                    {...this.state}
-                    {...this.actions}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/about"
-                render={() => <AboutPage {...this.state} />}
-              />
 
-              <Route
-                path="/archive"
-                render={() =>
-                  userUtil.getUser() ? (
-                    <ArchivePage
+              <div
+                id="main"
+                className={`w-50-l bg-white relative z-1 ${
+                  this.state.isOpen ? 'open' : ''
+                }`}
+              >
+                {this.state.user ? (
+                  <div
+                    onClick={this.handleMenuClick}
+                    className="mt4 ph4 ph4-l flex justify-end items-center icon"
+                  >
+                    {this.state.isOpen ? (
+                      <>
+                        close &nbsp;
+                        <i className="zmdi zmdi-close zmdi-hc-lg" />
+                      </>
+                    ) : (
+                      <>
+                        {this.state.user.name}&nbsp;&nbsp;
+                        <i className=" zmdi zmdi-account  zmdi-hc-lg" />
+                      </>
+                    )}
+                  </div>
+                ) : null}
+                <Header
+                  user={this.state.user}
+                  handleLogout={this.handleLogout}
+                  handleMenuClick={this.handleMenuClick}
+                  isOpen={this.state.isOpen}
+                />
+                {/* Routed Pages */}
+                {/* Pass state and any actions */}
+                {/* // TODO: Create Protected Routes */}
+                <Route
+                  exact
+                  path="/"
+                  render={() => (
+                    <Home
                       handleUpdateMixes={this.handleUpdateMixes}
                       {...this.state}
                       {...this.actions}
                     />
-                  ) : (
-                    <Redirect to="/login" />
-                  )
-                }
-              />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/about"
+                  render={() => <AboutPage {...this.state} />}
+                />
 
-              <Route
-                path="/blog"
-                render={() => (
-                  <BlogPage
-                    handleUpdatePosts={this.handleUpdatePosts}
-                    handleGetPosts={this.handleGetPosts}
-                    {...this.state}
-                    {...this.actions}
-                  />
-                )}
-              />
+                <Route
+                  path="/archive"
+                  render={() =>
+                    userUtil.getUser() ? (
+                      <ArchivePage
+                        handleUpdateMixes={this.handleUpdateMixes}
+                        {...this.state}
+                        {...this.actions}
+                      />
+                    ) : (
+                      <Redirect to="/login" />
+                    )
+                  }
+                />
+
+                <Route
+                  path="/blog"
+                  render={() => (
+                    <BlogPage
+                      handleUpdatePosts={this.handleUpdatePosts}
+                      handleGetPosts={this.handleGetPosts}
+                      {...this.state}
+                      {...this.actions}
+                    />
+                  )}
+                />
+              </div>
             </div>
-          </div>
+          </>
         </Switch>
 
         {/* Audio Player */}
