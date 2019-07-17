@@ -6,7 +6,18 @@ Mother FM is an up and coming, internet radio station that will _mother_ several
 
 ## Screenshots
 
+![Home Page](https://imgur.com/CTJ7bEe.png)
+![Logged In Home Page](https://imgur.com/KNffcGF.png)
+![Logged In Menu](https://imgur.com/oCLxVUS.png)
+![About Page](https://imgur.com/1W8iwb6.png)
+![Archive Page](https://imgur.com/MT19vu7.png)
+
+
 ## Technologies
+
+
+## Technologies
+
 
 ### Foundation
 
