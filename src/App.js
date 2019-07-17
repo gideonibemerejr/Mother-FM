@@ -233,7 +233,7 @@ class App extends Component {
 
               <div
                 id="main"
-                className={`w-50-l bg-white relative z-1 ${
+                className={`w-50-l mb5 bg-white relative z-1 ${
                   this.state.isOpen ? 'open' : ''
                 }`}
               >

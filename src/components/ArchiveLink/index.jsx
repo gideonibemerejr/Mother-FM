@@ -1,10 +1,10 @@
 import React from 'react'
 
-const ArchiveLink = () => {
+const ArchiveLink = ({ url }) => {
   return (
-    <div>
+    <a rel="noopener noreferrer" target="_blank" href={url}>
       <figure className=" mv0 button bg-transparent contain button-reset mixcloud-link db bg-center pointer center" />
-    </div>
+    </a>
   )
 }
 
