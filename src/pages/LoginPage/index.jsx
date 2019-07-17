@@ -48,7 +48,7 @@ class LoginPage extends Component {
                 >
                   <div className="form-group">
                     <label htmlFor="email">
-                      <i class="zmdi zmdi-email" />
+                      <i className="zmdi zmdi-email" />
                     </label>
                     <input
                       onChange={this.handleChange}
@@ -61,7 +61,7 @@ class LoginPage extends Component {
                   </div>
                   <div className="form-group">
                     <label htmlFor="password">
-                      <i class="zmdi zmdi-lock" />
+                      <i className="zmdi zmdi-lock" />
                     </label>
                     <input
                       onChange={this.handleChange}

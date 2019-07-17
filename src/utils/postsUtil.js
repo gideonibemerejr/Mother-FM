@@ -11,6 +11,7 @@ function index() {
 }
 
 function createPost(post) {
+  console.log('line 14', post)
   const options = {
     method: 'POST',
     headers: {
@@ -19,6 +20,7 @@ function createPost(post) {
     },
     body: JSON.stringify(post)
   }
+  console.log(options)
   return fetch(BASE_URL, options).then(res => res.json())
 }
 

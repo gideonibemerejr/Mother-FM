@@ -107,7 +107,6 @@ class App extends Component {
   handleAddPost = post => {
     this.setState(
       state => ({ isAdding: !this.state.isAdding }),
-      console.log(post),
       async function() {
         await postsUtil.createPost(post).then(result =>
           this.setState({
@@ -130,6 +129,7 @@ class App extends Component {
       }
     })
   }
+
   handleGetPosts = async () => {
     const posts = await postsUtil.index()
     console.log(posts)
@@ -300,6 +300,7 @@ class App extends Component {
                 render={() => (
                   <BlogPage
                     handleUpdatePosts={this.handleUpdatePosts}
+                    handleGetPosts={this.handleGetPosts}
                     {...this.state}
                     {...this.actions}
                   />

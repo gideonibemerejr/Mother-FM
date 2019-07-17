@@ -19,6 +19,7 @@ function createMix(link) {
     },
     body: JSON.stringify(link)
   }
+  console.log(options)
   return fetch(BASE_URL, options).then(res => res.json())
 }
 

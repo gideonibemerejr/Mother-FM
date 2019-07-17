@@ -30,7 +30,12 @@ class CreateForm extends Component {
   handlePostSubmit = e => {
     const { handleAddPost } = this.props
     e.preventDefault()
-    handleAddPost(this.state)
+    const post = {
+      title: this.state.title,
+      mixlink: this.state.mixlink,
+      body: this.state.body
+    }
+    handleAddPost(post)
     this.setState({
       title: '',
       mixlink: '',
