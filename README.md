@@ -46,7 +46,7 @@ To get started, clone this repo and begin working. Pull requests will be managed
 
 ### Users
 
-To get started, go to the Mother FM Home Page [here](motherfm.netlify.com). There you can login and submit a mix and/or blog post for a limited time.
+To get started, go to the Mother FM Home Page [here](https://www.motherfm.netlify.com). There you can login and submit a mix and/or blog post for a limited time.
 
 ## Next Steps
 
